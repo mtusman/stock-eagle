@@ -5,6 +5,7 @@ import bs4
 import smtplib
 import networkx as nx
 import json
+import matplotlib.pyplot as plt
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
@@ -16,7 +17,7 @@ from math import log
 from datetime import datetime 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import *
-import matplotlib.pyplot as plt
+
 
 def getArticle(tick, hourspast):
     orig_list = []
@@ -161,6 +162,9 @@ def get_stock(symbol):
         dates.append(datetime.strptime(day[0], "%Y-%m-%d"))
         closing.append(day[4])
     plt.plot_date(dates, closing, '-')
+    plt.title(symbol)
+    plt.xlabel('Date')
+    plt.ylable('Stock Price')
     plt.savefig('foo.png')
 
 
